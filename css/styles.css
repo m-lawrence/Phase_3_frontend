@@ -17,6 +17,7 @@ span.hike-name-span {
     border: 1px solid white;
 }
 
+
 #hike-names {
   height: 15vh;
   background: green;
@@ -27,10 +28,23 @@ span.hike-name-span {
   padding-top: 3vh;
 }
 
+
 #display-div {
-    height: 550px;
-    padding: 30px;
+    padding: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 1px solid black;
     text-align: center;
+    width: 40%;
+    float: right;
+    margin-right: 400px;
+}
+
+
+#my-hikes {
+    width: 25%;
+    float: left;
+}
+
+img.display-img {
+    width: 300px;
+    height: 400px;
 }
