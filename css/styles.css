@@ -1,0 +1,36 @@
+#header {
+    border: 1px solid black;
+    padding: 50px;
+    text-align: center;
+}
+
+span.hike-name-span {
+    padding: 1%;
+    height: 80%;
+    width: 8vw;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+    border-radius: 1.5em;
+    border: 1px solid white;
+}
+
+#hike-names {
+  height: 15vh;
+  background: green;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 3vh;
+  padding-top: 3vh;
+}
+
+#display-div {
+    height: 550px;
+    padding: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid black;
+    text-align: center;
+}
