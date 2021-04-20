@@ -2,6 +2,7 @@ const hikeNamesDiv = document.querySelector('div#hike-names')
 const displayDiv = document.querySelector('div#display-div')
 const loginForm = document.querySelector('form#login-form')
 const myHikesUl = document.querySelector('ul.my-hikes-ul')
+const newRevForm = document.querySelector('form#new-review-form')
 
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
@@ -63,7 +64,6 @@ function displayHike(hikeObj) {
         revRating.classList.add('rev-rating')
         const revDescription = document.createElement('p')
         revDescription.classList.add('rev-description')
-        console.log(review)
         revUser.textContent = `Reviewed by: ${review.username}`
         revRating.textContent = `Rating: ${review.rating}`
         revDescription.textContent = review.description 
@@ -127,5 +127,10 @@ myHikesUl.addEventListener('click', event => {
 })
 
 
+// newRevForm.addEventListener('submit', event => {
+//     event.preventDefault()
+    
+// })
+
 renderAllNames()
-// renderAllMyHikes(12)
+getHikeInfo(22)
