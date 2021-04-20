@@ -53,15 +53,19 @@ function displayHike(hikeObj) {
     hikeObj.hikereviews.forEach( review => {
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
+        const revUser = document.createElement('p')
+        revUser.classList.add('rev-user')
         const revRating = document.createElement('h4')
         revRating.classList.add('rev-rating')
         const revDescription = document.createElement('p')
         revDescription.classList.add('rev-description')
-
+        console.log(review)
+        revUser.textContent = `Reviewed by: ${review.username}`
         revRating.textContent = `Rating: ${review.rating}`
         revDescription.textContent = review.description 
 
         displayDiv.append(revDiv)
+        revDiv.append(revUser)
         revDiv.append(revRating)
         revDiv.append(revDescription)
     })
