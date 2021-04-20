@@ -39,6 +39,8 @@ function displayHike(hikeObj) {
     const displayDifficulty = document.querySelector('p.display-difficulty')
     const displayDistance = document.querySelector('p.display-distance')
     const displayRating = document.querySelector('p.display-rating')
+    const revContainer = document.querySelector('div#rev-container')
+    revContainer.innerHTML = ""
 
     displayName.textContent = hikeObj.name
     displayImg.src = hikeObj.image
@@ -66,7 +68,7 @@ function displayHike(hikeObj) {
         revRating.textContent = `Rating: ${review.rating}`
         revDescription.textContent = review.description 
 
-        displayDiv.append(revDiv)
+        revContainer.append(revDiv)
         revDiv.append(revUser)
         revDiv.append(revRating)
         revDiv.append(revDescription)
@@ -114,6 +116,15 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
 }
+
+myHikesUl.addEventListener('click', event => {
+    if (event.target.className = 'my-hikes-li') {
+        let id = event.target.dataset.id
+        fetch(`http://localhost:3000/hikes/${id}`)
+            .then(response => response.json())
+            .then(displayHike)
+    }
+})
 
 
 renderAllNames()
