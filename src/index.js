@@ -1,5 +1,7 @@
 const hikeNamesDiv = document.querySelector('div#hike-names')
 const displayDiv = document.querySelector('div#display-div')
+const loginForm = document.querySelector('form#login-form')
+const myHikesUl = document.querySelector('ul.my-hikes-ul')
 
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
@@ -73,7 +75,7 @@ function displayHike(hikeObj) {
 }
 
 function renderOneMyHike(hikeObj) {
-    const myHikesUl = document.querySelector('ul.my-hikes-ul')
+    
     const myHikesLi = document.createElement('li')
     myHikesLi.classList.add('my-hikes-li')
     myHikesLi.dataset.id = hikeObj.id
@@ -84,6 +86,7 @@ function renderOneMyHike(hikeObj) {
 }
 
 function renderAllMyHikes(id) {
+    myHikesUl.innerHTML = ""
     fetch(`http://localhost:3000/users/${id}`)
         .then(response => response.json())
         .then(user => user.myhikes.forEach(hike => {
@@ -91,7 +94,25 @@ function renderAllMyHikes(id) {
         }))
 }
 
+loginForm.addEventListener('submit', event => {
+    event.preventDefault()
+
+    let currUser = event.target.name.value
+    getUserByName(currUser)
+   
+})
+
+function getUserByName(name) {
+    fetch(`http://localhost:3000/users`)
+    .then(response => response.json())
+    .then(usersArr => getUserName(usersArr, name))
+}
+
+function getUserName(usersArr, name) {
+    let currUser = usersArr.find(user => user.name === name)
+    renderAllMyHikes(currUser.id)
+}
 
 
 renderAllNames()
-renderAllMyHikes(12)
+// renderAllMyHikes(12)
