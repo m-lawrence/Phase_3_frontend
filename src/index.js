@@ -54,7 +54,7 @@ function displayHike(hikeObj) {
     else if (hikeObj.averagerating === 4){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️"}
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
-    hikeObj.hikereviews.forEach( review => {
+    hikeObj.reviews.forEach( review => {
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
         const revUser = document.createElement('p')
