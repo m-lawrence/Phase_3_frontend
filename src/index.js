@@ -36,7 +36,7 @@ function displayHike(hikeObj) {
     const displayLocation = document.querySelector('h4.display-location')
     const displayDifficulty = document.querySelector('p.display-difficulty')
     const displayDistance = document.querySelector('p.display-distance')
-    const displayRating = document.querySelector('img.display-rating')
+    const displayRating = document.querySelector('p.display-rating')
 
     displayName.textContent = hikeObj.name
     displayImg.src = hikeObj.image
@@ -44,8 +44,30 @@ function displayHike(hikeObj) {
     displayLocation.textContent = hikeObj.location 
     displayDifficulty.textContent = `Difficulty: ${hikeObj.difficulty}`
     displayDistance.textContent = `Distance: ${hikeObj.distance} miles`
+    displayRating.textContent = `Rating: ${hikeObj.averagerating}`
     
 }
 
+function renderOneMyHike(hikeObj) {
+    const myHikesUl = document.querySelector('ul.my-hikes-ul')
+    const myHikesLi = document.createElement('li')
+    myHikesLi.classList.add('my-hikes-li')
+    myHikesLi.dataset.id = hikeObj.id
+
+    myHikesLi.textContent = hikeObj.name 
+
+    myHikesUl.append(myHikesLi)
+}
+
+function renderAllMyHikes(id) {
+    fetch(`http://localhost:3000/users/${id}`)
+        .then(response => response.json())
+        .then(user => user.myhikes.forEach(hike => {
+           renderOneMyHike(hike)
+        }))
+}
+
+
 
 renderAllNames()
+renderAllMyHikes(8)
