@@ -99,6 +99,8 @@ loginForm.addEventListener('submit', event => {
 
     let currUser = event.target.name.value
     getUserByName(currUser)
+
+    loginForm.reset()
    
 })
 
