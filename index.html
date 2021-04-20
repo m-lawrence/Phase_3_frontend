@@ -20,8 +20,9 @@
 </head>
 
 <body>
-    <h1 id="header">walkTalk</h1>
-    
+    <div id="header"> 
+        <h1>walkTalk</h1>
+    </div>
     <div id="hike-names">
         
     </div>
@@ -49,8 +50,8 @@
 
             </div>
             <form id="new-review-form">
-                <label form="new-review-form">Wanna talk about this hike?</label><br><br> 
-                <label for="rating">Rating</label>
+                <label form="new-review-form"><span>Wanna talk about this hike?</span></label><br><br> 
+                <label for="rating">Rating:</label>
                 <select name="rating" form="new-review-form" required >
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -58,7 +59,8 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                     </select><br><br>
-                <input type="text" name="description" required />
+                <label for="description">Tell us more:</label><br><br>
+                <textarea name="description" rows="4" cols="30" required></textarea><br><br>
                 <input type="submit" value="Talk about it" />
             </form>
         </div>

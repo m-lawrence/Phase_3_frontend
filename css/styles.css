@@ -1,7 +1,10 @@
 #header {
     border: 1px solid black;
-    padding: 50px;
+    padding: 75px;
     text-align: center;
+    background-image: url('https://cdn.britannica.com/79/176979-050-DC64B229/Little-Stony-Man-Cliffs-Blue-Ridge-Mountains.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 
 span.hike-name-span {
@@ -60,4 +63,9 @@ img.display-img {
     padding-top: 20px;
     padding-bottom: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid black;
+}
+
+#new-review-form span {
+    font-weight: 900;
 }
