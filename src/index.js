@@ -49,21 +49,22 @@ function displayHike(hikeObj) {
     else if (hikeObj.averagerating === 3){displayRating.textContent = "Rating: ⭐️⭐️⭐️"}
     else if (hikeObj.averagerating === 4){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️"}
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️⭐️"}
-    // hikeObj.reviews.forEach( review => {
-    //     const revDiv = document.createElement('div')
-    //     revDiv.classList.add('rev-div')
-    //     const revRating = document.createElement('h4')
-    //     revRating.classList.add('rev-rating')
-    //     const revDescription = document.createElement('p')
-    //     revDescription.classList.add('rev-description')
+  
+    hikeObj.hikereviews.forEach( review => {
+        const revDiv = document.createElement('div')
+        revDiv.classList.add('rev-div')
+        const revRating = document.createElement('h4')
+        revRating.classList.add('rev-rating')
+        const revDescription = document.createElement('p')
+        revDescription.classList.add('rev-description')
 
-    //     revRating.textContent = `Rating: ${review.rating}`
-    //     revDescription.textContent = review.description 
+        revRating.textContent = `Rating: ${review.rating}`
+        revDescription.textContent = review.description 
 
-    //     displayDiv.append(revDiv)
-    //     revDiv.append(revRating)
-    //     revDiv.append(revDescription)
-    // })
+        displayDiv.append(revDiv)
+        revDiv.append(revRating)
+        revDiv.append(revDescription)
+    })
     
 }
 
@@ -89,4 +90,4 @@ function renderAllMyHikes(id) {
 
 
 renderAllNames()
-renderAllMyHikes(1)
+renderAllMyHikes(12)
