@@ -44,7 +44,11 @@ function displayHike(hikeObj) {
     displayLocation.textContent = hikeObj.location 
     displayDifficulty.textContent = `Difficulty: ${hikeObj.difficulty}`
     displayDistance.textContent = `Distance: ${hikeObj.distance} miles`
-    displayRating.textContent = `Rating: ${hikeObj.averagerating}`
+    if (hikeObj.averagerating === 1){displayRating.textContent = "Rating: ⭐️"}
+    else if (hikeObj.averagerating === 2){displayRating.textContent = "Rating: ⭐️⭐️"}
+    else if (hikeObj.averagerating === 3){displayRating.textContent = "Rating: ⭐️⭐️⭐️"}
+    else if (hikeObj.averagerating === 4){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️"}
+    else if(hikeObj.averagerating === 5){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️⭐️"}
     // hikeObj.reviews.forEach( review => {
     //     const revDiv = document.createElement('div')
     //     revDiv.classList.add('rev-div')
@@ -85,4 +89,4 @@ function renderAllMyHikes(id) {
 
 
 renderAllNames()
-renderAllMyHikes(12)
+renderAllMyHikes(1)
