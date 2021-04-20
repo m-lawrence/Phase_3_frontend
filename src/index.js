@@ -94,4 +94,4 @@ function renderAllMyHikes(id) {
 
 
 renderAllNames()
-renderAllMyHikes(12)
+renderAllMyHikes(1)
