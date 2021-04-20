@@ -45,6 +45,21 @@ function displayHike(hikeObj) {
     displayDifficulty.textContent = `Difficulty: ${hikeObj.difficulty}`
     displayDistance.textContent = `Distance: ${hikeObj.distance} miles`
     displayRating.textContent = `Rating: ${hikeObj.averagerating}`
+    // hikeObj.reviews.forEach( review => {
+    //     const revDiv = document.createElement('div')
+    //     revDiv.classList.add('rev-div')
+    //     const revRating = document.createElement('h4')
+    //     revRating.classList.add('rev-rating')
+    //     const revDescription = document.createElement('p')
+    //     revDescription.classList.add('rev-description')
+
+    //     revRating.textContent = `Rating: ${review.rating}`
+    //     revDescription.textContent = review.description 
+
+    //     displayDiv.append(revDiv)
+    //     revDiv.append(revRating)
+    //     revDiv.append(revDescription)
+    // })
     
 }
 
@@ -70,4 +85,4 @@ function renderAllMyHikes(id) {
 
 
 renderAllNames()
-renderAllMyHikes(8)
+renderAllMyHikes(12)

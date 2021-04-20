@@ -42,9 +42,16 @@ span.hike-name-span {
 #my-hikes {
     width: 25%;
     float: left;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 img.display-img {
     width: 300px;
     height: 400px;
+}
+
+#login-form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
