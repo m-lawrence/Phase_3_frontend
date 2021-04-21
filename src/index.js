@@ -56,6 +56,7 @@ function displayHike(hikeObj) {
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
     hikeObj.reviews.forEach( review => {
+        console.log(review)
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
         const revRating = document.createElement('h4')
