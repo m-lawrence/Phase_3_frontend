@@ -58,34 +58,31 @@ function displayHike(hikeObj) {
     hikeObj.reviews.forEach( review => {
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
-        const revUser = document.createElement('p')
-        revUser.classList.add('rev-user')
         const revRating = document.createElement('h4')
         revRating.classList.add('rev-rating')
+        const revUser = document.createElement('p')
+        revUser.classList.add('rev-user')
         const revDescription = document.createElement('p')
         revDescription.classList.add('rev-description')
         const editBtn = document.createElement('button')
         editBtn.classList.add('edit-rev')
         const deleteBtn = document.createElement('button')
         deleteBtn.classList.add('delete-rev')
-        revUser.textContent = `Reviewed by: ${review.username}`
         revRating.textContent = `Rating: ${review.rating}`
-        revDescription.textContent = review.description 
+        revUser.textContent = `Reviewed by: ${review.username} ${review.date}`
+        revDescription.textContent = `"${review.description}"` 
         editBtn.textContent = "Edit"
         deleteBtn.textContent = "Delete"
 
+        revDiv.append(revRating, revUser, revDescription, editBtn, deleteBtn)
         revContainer.append(revDiv)
-        revDiv.append(revUser)
-        revDiv.append(revRating)
-        revDiv.append(revDescription)
-        revDiv.append(editBtn)
-        revDiv.append(deleteBtn)
     })
     
 }
 
 function renderOneMyHike(hikeObj) {
-    
+    const h2MyHikes = document.querySelector("#my-hikes h2")
+    h2MyHikes.textContent = "My hikes:"
     const myHikesLi = document.createElement('li')
     myHikesLi.classList.add('my-hikes-li')
     myHikesLi.dataset.id = hikeObj.id
