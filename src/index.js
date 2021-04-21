@@ -147,6 +147,60 @@ newRevForm.addEventListener('submit', event => {
         hike: displayDiv.dataset.hikeId
     }
 
+    // const addRevDiv = document.createElement('div')
+    // addRevDiv.classList.add('rev-div')
+    // const addRevRating = document.createElement('h4')
+    // addRevRating.classList.add('rev-rating')
+    // const addRevUser = document.createElement('p')
+    // addRevUser.classList.add('rev-user')
+    // const addRevDescription = document.createElement('p')
+    // addRevDescription.classList.add('rev-description')
+    // const addeditBtn = document.createElement('button')
+    // addeditBtn.classList.add('edit-rev')
+    // const addDeleteBtn = document.createElement('button')
+    // addDeleteBtn.classList.add('delete-rev')
+    // addRevRating.textContent = `Rating: ${ratingInput}`
+    // addRevUser.textContent = `Reviewed by: ${newRev.username} ${newRev.date}`
+    // addRevDescription.textContent = `"${descriptionInput}"` 
+    // addeditBtn.textContent = "Edit"
+    // addDeleteBtn.textContent = "Delete"
+    
+   
+    // addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
+    // revContainer.append(addRevDiv)
+
+    getCurrUser(newRevForm.dataset.userId, newRev)
+
+    // fetch('http://localhost:3000/reviews', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json'
+    //     },
+    //     body: JSON.stringify(newRev)
+    // })
+    // .then(response => response.json())
+    // .then()
+})
+
+function getCurrUser(id, newRev) {
+    fetch(`http://localhost:3000/users/${id}`)
+        .then(response => response.json())
+        .then(userObj => postNewReview(userObj, newRev))
+}
+
+function postNewReview(userObj, newRev) {
+    fetch('http://localhost:3000/reviews', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify(newRev)
+    })
+    .then(response => response.json())
+    .then()
+
     const addRevDiv = document.createElement('div')
     addRevDiv.classList.add('rev-div')
     const addRevRating = document.createElement('h4')
@@ -159,35 +213,16 @@ newRevForm.addEventListener('submit', event => {
     addeditBtn.classList.add('edit-rev')
     const addDeleteBtn = document.createElement('button')
     addDeleteBtn.classList.add('delete-rev')
-    addRevRating.textContent = `Rating: ${ratingInput}`
+    addRevRating.textContent = `Rating: ${newRev.rating}`
     addRevUser.textContent = `Reviewed by: ${newRev.username} ${newRev.date}`
-    addRevDescription.textContent = `"${descriptionInput}"` 
+    addRevDescription.textContent = `"${newRev.description}"` 
     addeditBtn.textContent = "Edit"
     addDeleteBtn.textContent = "Delete"
     
    
     addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
     revContainer.append(addRevDiv)
-
-    fetch('http://localhost:3000/reviews', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(newRev)
-    })
-    .then(response => response.json())
-    .then(console.log)
-})
-
-function getCurrUser(id, newRev) {
-    fetch(`http://localhost:3000/users/${id}`)
-        .then(response => response.json())
-        .then(console.log)
 }
-
-// function postNewReview()
 
 renderAllNames()
 getHikeInfo(22)
