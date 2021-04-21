@@ -205,7 +205,7 @@ signUpForm.addEventListener('submit', event => {
    
     fetch('http://localhost:3000/users', {
         method: 'POST',
-        header: {
+        headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
