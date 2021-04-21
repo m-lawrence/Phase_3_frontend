@@ -124,6 +124,8 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
     newRevForm.dataset.userId = currUser.id 
+    const loginDiv = document.querySelector('div#login-container')
+    loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
 }
 
 myHikesUl.addEventListener('click', event => {
@@ -182,13 +184,13 @@ newRevForm.addEventListener('submit', event => {
     .then(console.log)
 })
 
-function getCurrUser(id, newRev) {
-    fetch(`http://localhost:3000/users/${id}`)
-        .then(response => response.json())
-        .then(console.log)
-}
+// function getCurrUser(id, newRev) {
+//     fetch(`http://localhost:3000/users/${id}`)
+//         .then(response => response.json())
+//         .then(console.log)
+// }
 
-// function postNewReview()
+
 
 signUpForm.addEventListener('submit', event => {
     event.preventDefault()
@@ -218,5 +220,5 @@ signUpForm.addEventListener('submit', event => {
 })
 
 renderAllNames()
-getHikeInfo(22)
+getHikeInfo(1)
 
