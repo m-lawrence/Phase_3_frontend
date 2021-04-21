@@ -27,12 +27,26 @@
         
     </div>
     <div id="main-container">
-        <form id="login-form">
-            <label for="name">Name</label>
-            <input type="text" name="name" required />
-    
-            <input type="submit" value="Login" />
-        </form>
+        <div id="login-container">
+            <h4>Login</h4>
+            <form id="login-form">
+                <label for="name">Name</label>
+                <input type="text" name="name" required />
+        
+                <input type="submit" value="Login" />
+            </form>
+            <h4>Or Signup</h4>
+            <form id="signup-form">
+                <label for="name">Name</label>
+                <input type="text" name="name" required /><br><br>
+                <label for="age">Age</label>
+                <input type="number" name="age" required /><br><br>
+                <label for="location">Location</label>
+                <input type="text" name="location" required />
+        
+                <input type="submit" value="Signup" />
+            </form>
+        </div>
         <div id="my-hikes">
             <h2>My hikes:</h2>
             <ul class="my-hikes-ul">

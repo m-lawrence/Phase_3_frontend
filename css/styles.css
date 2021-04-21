@@ -54,8 +54,6 @@ img.display-img {
 }
 
 #login-form {
-    padding-top: 20px;
-    padding-bottom: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -68,4 +66,16 @@ img.display-img {
 
 #new-review-form span {
     font-weight: 900;
+}
+
+#signup-form {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#login-container {
+    border: 2px solid black;
+    border-radius: 1.5%;
+    padding: 5px;
+    width: 30%;
+    text-align: center;
 }

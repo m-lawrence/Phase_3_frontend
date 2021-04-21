@@ -64,14 +64,22 @@ function displayHike(hikeObj) {
         revRating.classList.add('rev-rating')
         const revDescription = document.createElement('p')
         revDescription.classList.add('rev-description')
+        const editBtn = document.createElement('button')
+        editBtn.classList.add('edit-rev')
+        const deleteBtn = document.createElement('button')
+        deleteBtn.classList.add('delete-rev')
         revUser.textContent = `Reviewed by: ${review.username}`
         revRating.textContent = `Rating: ${review.rating}`
         revDescription.textContent = review.description 
+        editBtn.textContent = "Edit"
+        deleteBtn.textContent = "Delete"
 
         revContainer.append(revDiv)
         revDiv.append(revUser)
         revDiv.append(revRating)
         revDiv.append(revDescription)
+        revDiv.append(editBtn)
+        revDiv.append(deleteBtn)
     })
     
 }
