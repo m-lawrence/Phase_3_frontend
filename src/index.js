@@ -3,6 +3,7 @@ const displayDiv = document.querySelector('div#display-div')
 const loginForm = document.querySelector('form#login-form')
 const myHikesUl = document.querySelector('ul.my-hikes-ul')
 const newRevForm = document.querySelector('form#new-review-form')
+const revContainer = document.querySelector('div#rev-container')
 
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
@@ -40,9 +41,10 @@ function displayHike(hikeObj) {
     const displayDifficulty = document.querySelector('p.display-difficulty')
     const displayDistance = document.querySelector('p.display-distance')
     const displayRating = document.querySelector('p.display-rating')
-    const revContainer = document.querySelector('div#rev-container')
+    
     revContainer.innerHTML = ""
 
+    displayDiv.dataset.hikeId = hikeObj.id
     displayName.textContent = hikeObj.name
     displayImg.src = hikeObj.image
     displayImg.alt = hikeObj.name 
@@ -121,6 +123,7 @@ function getUserByName(name) {
 function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
+    newRevForm.dataset.userId = currUser.id 
 }
 
 myHikesUl.addEventListener('click', event => {
@@ -133,10 +136,60 @@ myHikesUl.addEventListener('click', event => {
 })
 
 
-// newRevForm.addEventListener('submit', event => {
-//     event.preventDefault()
+newRevForm.addEventListener('submit', event => {
+    event.preventDefault()
+    const ratingInput = event.target.rating.value 
+    const descriptionInput = event.target.description.value
+
+    const newRev = {
+        rating: ratingInput,
+        description: descriptionInput,
+        user: newRevForm.dataset.userId,
+        hike: displayDiv.dataset.hikeId
+    }
+
+    const addRevDiv = document.createElement('div')
+    addRevDiv.classList.add('rev-div')
+    const addRevRating = document.createElement('h4')
+    addRevRating.classList.add('rev-rating')
+    const addRevUser = document.createElement('p')
+    addRevUser.classList.add('rev-user')
+    const addRevDescription = document.createElement('p')
+    addRevDescription.classList.add('rev-description')
+    const addeditBtn = document.createElement('button')
+    addeditBtn.classList.add('edit-rev')
+    const addDeleteBtn = document.createElement('button')
+    addDeleteBtn.classList.add('delete-rev')
+    addRevRating.textContent = `Rating: ${ratingInput}`
+    addRevUser.textContent = `Reviewed by: ${newRev.username} ${newRev.date}`
+    addRevDescription.textContent = `"${descriptionInput}"` 
+    addeditBtn.textContent = "Edit"
+    addDeleteBtn.textContent = "Delete"
     
-// })
+   
+    addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
+    revContainer.append(addRevDiv)
+
+    fetch('http://localhost:3000/reviews', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(newRev)
+    })
+    .then(response => response.json())
+    .then(console.log)
+})
+
+function getCurrUser(id, newRev) {
+    fetch(`http://localhost:3000/users/${id}`)
+        .then(response => response.json())
+        .then(console.log)
+}
+
+// function postNewReview()
 
 renderAllNames()
-getHikeInfo(1)
+getHikeInfo(22)
+
