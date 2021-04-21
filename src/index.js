@@ -49,11 +49,11 @@ function displayHike(hikeObj) {
     displayLocation.textContent = hikeObj.location 
     displayDifficulty.textContent = `Difficulty: ${hikeObj.difficulty}`
     displayDistance.textContent = `Distance: ${hikeObj.distance} miles`
-    if (hikeObj.averagerating === 1){displayRating.textContent = "Rating: ⭐️"}
-    else if (hikeObj.averagerating === 2){displayRating.textContent = "Rating: ⭐️⭐️"}
-    else if (hikeObj.averagerating === 3){displayRating.textContent = "Rating: ⭐️⭐️⭐️"}
-    else if (hikeObj.averagerating === 4){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️"}
-    else if(hikeObj.averagerating === 5){displayRating.textContent = "Rating: ⭐️⭐️⭐️⭐️⭐️"}
+    if (hikeObj.averagerating === 1){displayRating.textContent = "Average Rating: ⭐️"}
+    else if (hikeObj.averagerating === 2){displayRating.textContent = "Average Rating: ⭐️⭐️"}
+    else if (hikeObj.averagerating === 3){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️"}
+    else if (hikeObj.averagerating === 4){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️"}
+    else if(hikeObj.averagerating === 5){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
     hikeObj.reviews.forEach( review => {
         const revDiv = document.createElement('div')
@@ -138,4 +138,4 @@ myHikesUl.addEventListener('click', event => {
 // })
 
 renderAllNames()
-getHikeInfo(22)
+getHikeInfo(1)
