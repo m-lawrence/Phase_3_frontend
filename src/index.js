@@ -144,8 +144,8 @@ newRevForm.addEventListener('submit', event => {
     const newRev = {
         rating: ratingInput,
         description: descriptionInput,
-        user: newRevForm.dataset.userId,
-        hike: displayDiv.dataset.hikeId
+        userId: newRevForm.dataset.userId,
+        hikeId: displayDiv.dataset.hikeId
     }
 
     const addRevDiv = document.createElement('div')
@@ -191,5 +191,5 @@ function getCurrUser(id, newRev) {
 // function postNewReview()
 
 renderAllNames()
-getHikeInfo(22)
+getHikeInfo(1)
 
