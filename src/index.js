@@ -59,7 +59,7 @@ function displayHike(hikeObj) {
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
     hikeObj.reviews.forEach( review => {
-        console.log(review)
+        // console.log(review)
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
         const revRating = document.createElement('h4')
@@ -78,8 +78,20 @@ function displayHike(hikeObj) {
         editBtn.textContent = "Edit"
         deleteBtn.textContent = "Delete"
 
-        revDiv.append(revRating, revUser, revDescription, editBtn, deleteBtn)
+        const updateForm = document.createElement('form')
+            updateForm.className = 'update-form'
+            updateForm.innerHTML = `
+            <input type="number" value= "${review.rating}"/>
+            <input type='text' value="${review.description}"/>
+            <input type="submit" value="Edit Review" />
+            `
+        updateForm.style.display = 'none'
+        // console.log(updateForm)
+
+        revDiv.append(revRating, revUser, revDescription, editBtn, deleteBtn, updateForm)
         revContainer.append(revDiv)
+        revDiv.dataset.id = review.id
+       
     })
     
 }
@@ -169,7 +181,6 @@ newRevForm.addEventListener('submit', event => {
     addeditBtn.textContent = "Edit"
     addDeleteBtn.textContent = "Delete"
     
-   
     addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
     revContainer.append(addRevDiv)
 
@@ -218,6 +229,64 @@ signUpForm.addEventListener('submit', event => {
         .then(console.log)
 
         signUpForm.reset()
+})
+
+
+revContainer.addEventListener("click", event => {
+    
+    const currentReview = event.target.closest("div")
+    // console.log("current",currentReview)
+    const reviewId = parseInt(currentReview.dataset.id)
+    
+    if (event.target.matches("button.delete-rev")){
+        // console.log("second", event.target)
+        
+        fetch(`http://localhost:3000/reviews/${reviewId}`,{
+            method: "DELETE"
+        })
+        currentReview.remove()
+    }
+    else if (event.target.matches("button.edit-rev")){
+        
+        // console.log("edit",event.target)
+        const editForm = currentReview.children[5]
+        console.log(editForm)
+        if (editForm.style.display ==="none"){editForm.style.display ="block"}
+        else {editForm.style.display ="none"}
+        let oldh4Rating = currentReview.children[0]
+        console.log("oldRating",oldh4Rating)
+        console.log("HI",event.target.children[0])
+            oldh4Rating.textContent = event.target[0].value
+            
+            // let updatedH4Rating = event.target[0].value
+            // let oldPDescription = currentReview.children[2]
+            // oldPDescription.textContent = event.target[1].value
+            // let updatedPDescription = event.target[1].value
+        editForm.addEventListener("submit", e => {
+            e.preventDefault()
+            let updatedH4Rating = e.target[0].value
+            let oldPDescription = currentReview.children[2]
+            oldPDescription.textContent = e.target[1].value
+            let updatedPDescription = e.target[1].value
+            console.log(editForm)
+            // let oldh4Rating = currentReview.children[0]
+            // oldh4Rating.textContent = event.target[0].value
+            // let updatedH4Rating = event.target[0].value
+            // let oldPDescription = currentReview.children[2]
+            // oldPDescription.textContent = event.target[1].value
+            // let updatedPDescription = event.target[1].value
+            
+            
+            fetch(`http://localhost:3000/reviews/${reviewId}`,{
+                method: "PATCH",
+                headers: {"Content-type": "application/json", "Accept":"application/json"},
+                body: JSON.stringify({rating: updatedH4Rating, description: updatedPDescription})
+            })
+            
+        })
+        
+        
+    }
 })
 
 renderAllNames()
