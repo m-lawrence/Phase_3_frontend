@@ -4,6 +4,7 @@ const loginForm = document.querySelector('form#login-form')
 const myHikesUl = document.querySelector('ul.my-hikes-ul')
 const newRevForm = document.querySelector('form#new-review-form')
 const revContainer = document.querySelector('div#rev-container')
+const signUpForm = document.querySelector('form#signup-form')
 
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
@@ -188,6 +189,33 @@ function getCurrUser(id, newRev) {
 }
 
 // function postNewReview()
+
+signUpForm.addEventListener('submit', event => {
+    event.preventDefault()
+   
+    const name = event.target.name.value
+    const age = event.target.age.value 
+    const location = event.target.location.value 
+
+    const userObj = {
+        name,
+        age,
+        location
+    }
+   
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        header: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(userObj)
+    })
+        .then(response => response.json())
+        .then(console.log)
+
+        signUpForm.reset()
+})
 
 renderAllNames()
 getHikeInfo(22)
