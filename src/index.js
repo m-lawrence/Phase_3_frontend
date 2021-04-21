@@ -4,6 +4,7 @@ const loginForm = document.querySelector('form#login-form')
 const myHikesUl = document.querySelector('ul.my-hikes-ul')
 const newRevForm = document.querySelector('form#new-review-form')
 const revContainer = document.querySelector('div#rev-container')
+const signUpForm = document.querySelector('form#signup-form')
 
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
@@ -124,6 +125,8 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
     newRevForm.dataset.userId = currUser.id 
+    const loginDiv = document.querySelector('div#login-container')
+    loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
 }
 
 myHikesUl.addEventListener('click', event => {
@@ -182,13 +185,40 @@ newRevForm.addEventListener('submit', event => {
     .then(console.log)
 })
 
-function getCurrUser(id, newRev) {
-    fetch(`http://localhost:3000/users/${id}`)
+// function getCurrUser(id, newRev) {
+//     fetch(`http://localhost:3000/users/${id}`)
+//         .then(response => response.json())
+//         .then(console.log)
+// }
+
+
+
+signUpForm.addEventListener('submit', event => {
+    event.preventDefault()
+   
+    const name = event.target.name.value
+    const age = event.target.age.value 
+    const location = event.target.location.value 
+
+    const userObj = {
+        name,
+        age,
+        location
+    }
+   
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(userObj)
+    })
         .then(response => response.json())
         .then(console.log)
-}
 
-// function postNewReview()
+        signUpForm.reset()
+})
 
 renderAllNames()
 getHikeInfo(1)
