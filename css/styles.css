@@ -62,6 +62,7 @@ img.display-img {
     padding-bottom: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 2px solid black;
+    display: none;
 }
 
 #new-review-form span {

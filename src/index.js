@@ -59,7 +59,7 @@ function displayHike(hikeObj) {
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
     hikeObj.reviews.forEach( review => {
-        // console.log(review)
+      
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
         const revRating = document.createElement('h4')
@@ -73,7 +73,10 @@ function displayHike(hikeObj) {
         const deleteBtn = document.createElement('button')
         deleteBtn.classList.add('delete-rev')
         revRating.textContent = `Rating: ${review.rating}`
-        revUser.textContent = `Reviewed by: ${review.username} ${review.date}`
+        revUser.textContent = `Reviewed by: ${review.username}`
+        const revDate = document.createElement('p')
+        revDate.classList.add('rev-date')
+        revDate.textContent = `${review.date}`
         revDescription.textContent = `"${review.description}"` 
         editBtn.textContent = "Edit"
         deleteBtn.textContent = "Delete"
@@ -86,9 +89,9 @@ function displayHike(hikeObj) {
             <input type="submit" value="Edit Review" />
             `
         updateForm.style.display = 'none'
-        // console.log(updateForm)
+      
 
-        revDiv.append(revRating, revUser, revDescription, editBtn, deleteBtn, updateForm)
+        revDiv.append(revRating, revUser, revDate, revDescription, editBtn, deleteBtn, updateForm)
         revContainer.append(revDiv)
         revDiv.dataset.id = review.id
        
@@ -124,7 +127,7 @@ loginForm.addEventListener('submit', event => {
     getUserByName(currUser)
 
     loginForm.reset()
-   
+    newRevForm.style.display = "block"
 })
 
 function getUserByName(name) {
@@ -176,7 +179,7 @@ newRevForm.addEventListener('submit', event => {
     const addDeleteBtn = document.createElement('button')
     addDeleteBtn.classList.add('delete-rev')
     addRevRating.textContent = `Rating: ${ratingInput}`
-    addRevUser.textContent = `Reviewed by: ${newRev.username} ${newRev.date}`
+    
     addRevDescription.textContent = `"${descriptionInput}"` 
     addeditBtn.textContent = "Edit"
     addDeleteBtn.textContent = "Delete"
@@ -194,15 +197,10 @@ newRevForm.addEventListener('submit', event => {
         body: JSON.stringify(newRev)
     })
     .then(response => response.json())
-    .then(console.log)
+    .then(data =>  addRevUser.textContent = `Reviewed by: ${data.username} ${data.date}`)
+
+   
 })
-
-// function getCurrUser(id, newRev) {
-//     fetch(`http://localhost:3000/users/${id}`)
-//         .then(response => response.json())
-//         .then(console.log)
-// }
-
 
 
 signUpForm.addEventListener('submit', event => {
@@ -211,6 +209,8 @@ signUpForm.addEventListener('submit', event => {
     const name = event.target.name.value
     const age = event.target.age.value 
     const location = event.target.location.value 
+    newRevForm.style.display = "block"
+   
 
     const userObj = {
         name,
@@ -227,8 +227,9 @@ signUpForm.addEventListener('submit', event => {
         body: JSON.stringify(userObj)
     })
         .then(response => response.json())
-        .then(console.log)
+        .then(data => newRevForm.dataset.userId = data.id)
 
+        
         signUpForm.reset()
 })
 
@@ -236,11 +237,10 @@ signUpForm.addEventListener('submit', event => {
 revContainer.addEventListener("click", event => {
     
     const currentReview = event.target.closest("div")
-    // console.log("currentReview", currentReview)
+   
     const reviewId = (currentReview.dataset.id)
     
     if (event.target.matches("button.delete-rev")){
-        // console.log("second", event.target)
         
         fetch(`http://localhost:3000/reviews/${reviewId}`,{
             method: "DELETE"
@@ -249,23 +249,11 @@ revContainer.addEventListener("click", event => {
     }
     else if (event.target.matches("button.edit-rev")){
        
-        const editForm = currentReview.children[5]
+        const editForm = currentReview.children[6]
         
         if (editForm.style.display ==="none"){editForm.style.display ="block"}
         else {editForm.style.display ="none"}
-        // let displayRating = currentReview.children[0]
-        
-        
-        // let updatedRating = editForm.children[0].value
-        
-        // displayRating.textContent = `Rating: ${updatedRating}`
 
-        // let displayDescription = currentReview.children[2]
-        
-        // let updatedDescription = editForm.children[1].value
-        
-        // // debugger
-        // displayDescription.textContent = updatedDescription 
         
         
         editForm.addEventListener("submit", e => {
@@ -274,26 +262,24 @@ revContainer.addEventListener("click", event => {
             let updatedH4Rating = e.target[0].value
             let displayRating = currentReview.children[0]
             displayRating.textContent = `Rating: ${e.target[0].value}`
-            let oldPDescription = currentReview.children[2]
+            let oldPDescription = currentReview.children[3]
             oldPDescription.textContent = e.target[1].value
             let updatedDescription = e.target[1].value
+            let updatedDate = currentReview.children[2]
+            console.log(updatedDate)
            
-            // let oldh4Rating = currentReview.children[0]
-            // oldh4Rating.textContent = event.target[0].value
-            // let updatedH4Rating = event.target[0].value
-            // let oldPDescription = currentReview.children[2]
-            // oldPDescription.textContent = event.target[1].value
-            // let updatedPDescription = event.target[1].value
-           
+         
+        
             
             fetch(`http://localhost:3000/reviews/${reviewId}`,{
                 method: "PATCH",
                 headers: {"Content-type": "application/json", "Accept":"application/json"},
                 body: JSON.stringify({rating: updatedH4Rating, description: updatedDescription})
             })
-          
+            .then(response => response.json())
+            .then(data => updatedDate.textContent = data.date)
         })
-        
+              
         
     }
 })
