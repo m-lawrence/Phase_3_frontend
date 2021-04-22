@@ -85,11 +85,13 @@ function displayHike(hikeObj) {
         revDescription.textContent = `"${review.description}"` 
         editBtn.textContent = "Edit"
         deleteBtn.textContent = "Delete"
+        revDiv.dataset.userId = review.user.id
+    
 
         const updateForm = document.createElement('form')
             updateForm.className = 'update-form'
             updateForm.innerHTML = `
-            <br><input type="number" min ="1" max ="5"value= "${review.rating}"/><br>
+            <br><input type="number" value= "${review.rating}" min="1" max="5"/><br>
             <textarea name="description" rows="4" cols="30" required></textarea><br>
             <input type="submit" value="Edit Review" />
             `
@@ -154,16 +156,27 @@ function getUserName(usersArr, name) {
     console.log("RevDiv",addRevDiv)
     loginDiv.style.border = "none"
     loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
-   
+    loginDiv.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+    loginDiv.style.fontSize = "1.5em"
+    loginDiv.style.textAlign = "left"
+    loginDiv.style.paddingLeft = "15px"
     // const editBtn = document.createElement('button')
     // editBtn.classList.add('edit-rev')
     // const deleteBtn = document.createElement('button')
     // deleteBtn.classList.add('delete-rev')
     // editBtn.textContent = "Edit"
     // deleteBtn.textContent = "Delete"
+    // const allRevDivs = document.querySelectorAll('div.rev-div')
+   
+    // allRevDivs.forEach(div => {
+        
+    //     if (div.dataset.userId == currUser.id) {
+    //        div.append(editBtn, deleteBtn)
+    //     }
+    // })
 
     // currUser.reviews.forEach(review => {
-    //     const reviewDiv = element.getAttribute(`[dataset.id="${review.id}"]`)
+    //     const reviewDiv = allRevDivs.find(`[dataset.id="${review.id}"]`)
     //     reviewDiv.append(editBtn, deleteBtn)})
 }
 
@@ -248,7 +261,10 @@ signUpForm.addEventListener('submit', event => {
     newRevForm.style.display = "block"
     loginDiv.style.border = "none"
     loginDiv.innerHTML = `<h3>Welcome, ${name}</h3>`
-   
+    loginDiv.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+    loginDiv.style.fontSize = "1.5em"
+    loginDiv.style.textAlign = "left"
+    loginDiv.style.paddingLeft = "15px"
 
     const userObj = {
         name,
