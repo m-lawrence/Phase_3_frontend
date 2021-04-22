@@ -111,18 +111,21 @@ function renderOneMyHike(hikeObj) {
     myHikesLi.dataset.id = hikeObj.id
     myHikesLi.textContent = hikeObj.name 
     myHikesUl.append(myHikesLi)
-
+    // console.log(hikeObj)
     // console.log(myHikesLi)
-    
+
 }
 
 function renderAllMyHikes(id) {
     myHikesUl.innerHTML = ""
     fetch(`http://localhost:3000/users/${id}`)
         .then(response => response.json())
-        .then(user => user.myhikes.forEach(hike => {
+        .then(user => {debugger 
+            user.myhikes.forEach(hike => {
+            
            renderOneMyHike(hike)
-        }))
+           debugger
+        })})
 }
 
 loginForm.addEventListener('submit', event => {
