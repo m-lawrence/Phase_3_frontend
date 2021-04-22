@@ -121,11 +121,12 @@ function renderAllMyHikes(id) {
     myHikesUl.innerHTML = ""
     fetch(`http://localhost:3000/users/${id}`)
         .then(response => response.json())
-        .then(user => {debugger 
+        .then(user => {
+             
             user.myhikes.forEach(hike => {
             
            renderOneMyHike(hike)
-           debugger
+        //    debugger
         })})
 }
 
