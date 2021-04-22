@@ -81,6 +81,9 @@ span.hike-name-span {
     color: green;
 }
 
+.talk-about-it:hover{
+    background-color: darkgreen;
+}
 
 img.display-img {
     width: 300px;
@@ -89,6 +92,7 @@ img.display-img {
 
 #login-form {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-right: 40px;
 }
 
 #new-review-form {
