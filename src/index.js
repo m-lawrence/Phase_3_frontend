@@ -157,10 +157,10 @@ newRevForm.addEventListener('submit', event => {
     const descriptionInput = event.target.description.value
 
     const newRev = {
-        rating: ratingInput,
+        rating: parseInt(ratingInput),
         description: descriptionInput,
-        userId: newRevForm.dataset.userId,
-        hikeId: displayDiv.dataset.hikeId
+        user_id: parseInt(newRevForm.dataset.userId),
+        hike_id: parseInt(displayDiv.dataset.hikeId)
     }
 
     const addRevDiv = document.createElement('div')
@@ -183,6 +183,7 @@ newRevForm.addEventListener('submit', event => {
     
     addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
     revContainer.append(addRevDiv)
+
 
     fetch('http://localhost:3000/reviews', {
         method: 'POST',
@@ -249,47 +250,48 @@ revContainer.addEventListener("click", event => {
     else if (event.target.matches("button.edit-rev")){
        
         const editForm = currentReview.children[5]
-        console.log("third",editForm)
+        
         if (editForm.style.display ==="none"){editForm.style.display ="block"}
         else {editForm.style.display ="none"}
-        let displayRating = currentReview.children[0]
-        console.log("displayRate", displayRating)
+        // let displayRating = currentReview.children[0]
         
-        let updatedRating = editForm.children[0].value
-        // debugger
-        console.log("updatedRating",updatedRating)
-        displayRating.textContent = `Rating: ${updatedRating}`
+        
+        // let updatedRating = editForm.children[0].value
+        
+        // displayRating.textContent = `Rating: ${updatedRating}`
 
-        let displayDescription = currentReview.children[2]
-        console.log("displayDesc", displayDescription)
-        let updatedDescription = editForm.children[1].value
-        console.log("updatedDesc", updatedDescription)
-        // debugger
-        displayDescription.textContent = updatedDescription 
+        // let displayDescription = currentReview.children[2]
+        
+        // let updatedDescription = editForm.children[1].value
+        
+        // // debugger
+        // displayDescription.textContent = updatedDescription 
         
         
         editForm.addEventListener("submit", e => {
-            console.log("HHH", e.target)
+           
             e.preventDefault()
-            // let updatedH4Rating = e.target[0].value
-            // let oldPDescription = currentReview.children[2]
-            // oldPDescription.textContent = e.target[1].value
-            // let updatedPDescription = e.target[1].value
-            // console.log(editForm)
+            let updatedH4Rating = e.target[0].value
+            let displayRating = currentReview.children[0]
+            displayRating.textContent = `Rating: ${e.target[0].value}`
+            let oldPDescription = currentReview.children[2]
+            oldPDescription.textContent = e.target[1].value
+            let updatedDescription = e.target[1].value
+           
             // let oldh4Rating = currentReview.children[0]
             // oldh4Rating.textContent = event.target[0].value
             // let updatedH4Rating = event.target[0].value
             // let oldPDescription = currentReview.children[2]
             // oldPDescription.textContent = event.target[1].value
             // let updatedPDescription = event.target[1].value
-            
+           
             
             fetch(`http://localhost:3000/reviews/${reviewId}`,{
                 method: "PATCH",
                 headers: {"Content-type": "application/json", "Accept":"application/json"},
-                body: JSON.stringify({rating: updatedRating, description: updatedDescription})
+                body: JSON.stringify({rating: updatedH4Rating, description: updatedDescription})
             })
-            editForm.reset()
+          
         })
         
         
