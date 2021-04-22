@@ -5,7 +5,8 @@ const myHikesUl = document.querySelector('ul.my-hikes-ul')
 const newRevForm = document.querySelector('form#new-review-form')
 const revContainer = document.querySelector('div#rev-container')
 const signUpForm = document.querySelector('form#signup-form')
-
+const revMainContainer = document.querySelector('div#rev-main-container')
+const loginDiv = document.querySelector('div#login-container')
 
 
 
@@ -148,7 +149,8 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
     newRevForm.dataset.userId = currUser.id 
-    const loginDiv = document.querySelector('div#login-container')
+   
+    loginDiv.style.border = "none"
     loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
    
     // const editBtn = document.createElement('button')
@@ -242,6 +244,8 @@ signUpForm.addEventListener('submit', event => {
     const age = event.target.age.value 
     const location = event.target.location.value 
     newRevForm.style.display = "block"
+    loginDiv.style.border = "none"
+    loginDiv.innerHTML = `<h3>Welcome, ${name}</h3>`
    
 
     const userObj = {
