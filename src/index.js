@@ -7,7 +7,7 @@ const revContainer = document.querySelector('div#rev-container')
 const signUpForm = document.querySelector('form#signup-form')
 const revMainContainer = document.querySelector('div#rev-main-container')
 const loginDiv = document.querySelector('div#login-container')
-
+const addRevDiv = document.createElement('div')
 
 
 function renderOneName(hikeObj) {
@@ -89,7 +89,7 @@ function displayHike(hikeObj) {
         const updateForm = document.createElement('form')
             updateForm.className = 'update-form'
             updateForm.innerHTML = `
-            <br><input type="number" value= "${review.rating}"/><br>
+            <br><input type="number" min ="1" max ="5"value= "${review.rating}"/><br>
             <textarea name="description" rows="4" cols="30" required></textarea><br>
             <input type="submit" value="Edit Review" />
             `
@@ -150,7 +150,8 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
     newRevForm.dataset.userId = currUser.id 
-   
+    console.log("Preveious",newRevForm.previousElementSibling)
+    console.log("RevDiv",addRevDiv)
     loginDiv.style.border = "none"
     loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
    
@@ -188,7 +189,7 @@ newRevForm.addEventListener('submit', event => {
         hike_id: parseInt(displayDiv.dataset.hikeId)
     }
 
-    const addRevDiv = document.createElement('div')
+    // const addRevDiv = document.createElement('div')
     addRevDiv.classList.add('rev-div')
     const addRevRating = document.createElement('h4')
     addRevRating.classList.add('rev-rating')
