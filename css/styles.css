@@ -77,6 +77,10 @@ span.hike-name-span {
     content: '🌲';
 }
 
+.my-hikes-ul li:hover {
+    color: green;
+}
+
 
 img.display-img {
     width: 300px;
