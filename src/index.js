@@ -5,7 +5,7 @@ const myHikesUl = document.querySelector('ul.my-hikes-ul')
 const newRevForm = document.querySelector('form#new-review-form')
 const revContainer = document.querySelector('div#rev-container')
 const signUpForm = document.querySelector('form#signup-form')
-
+const revMainContainer = document.querySelector('div#rev-main-container')
 
 
 

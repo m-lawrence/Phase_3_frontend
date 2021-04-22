@@ -63,6 +63,10 @@ img.display-img {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 2px solid black;
     display: none;
+    margin-right: 300px;
+    text-align: center;
+    border-radius: 1.5em;
+    margin-top: 10px;
 }
 
 #new-review-form span {
@@ -74,9 +78,22 @@ img.display-img {
 }
 
 #login-container {
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 1.5%;
     padding: 5px;
     width: 30%;
     text-align: center;
+}
+
+#rev-main-container {
+    float: right;
+    width: 75%;
+}
+
+.rev-div {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 1.5em;
+    padding: 10px;
+    margin: 10px;
 }
