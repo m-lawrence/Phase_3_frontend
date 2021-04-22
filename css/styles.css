@@ -73,6 +73,10 @@ span.hike-name-span {
     padding: 0;
 }
 
+.my-hikes-ul li::before {
+    content: '🌲';
+}
+
 
 img.display-img {
     width: 300px;
