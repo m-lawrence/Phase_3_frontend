@@ -2,9 +2,20 @@
     border: 1px solid black;
     padding: 75px;
     text-align: center;
-    background-image: url('https://cdn.britannica.com/79/176979-050-DC64B229/Little-Stony-Man-Cliffs-Blue-Ridge-Mountains.jpg');
+    /* background-image: url('https://cdn.britannica.com/79/176979-050-DC64B229/Little-Stony-Man-Cliffs-Blue-Ridge-Mountains.jpg'); */
+    /* background-image: url('https://www.trailahassee.com/wp-content/uploads/2017/06/sample_trail_header.jpg'); */
+    /* background-image: url('https://s3.amazonaws.com/images.gearjunkie.com/uploads/2015/10/Superior-Hiking-trail.jpg'); */
+    background-image: url('https://media.timeout.com/images/105655983/image.jpg');
     background-repeat:no-repeat;
     background-size:cover;
+}
+
+#header h1 {
+    font-size: 500%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #403B1B;
 }
 
 span.hike-name-span {
@@ -17,7 +28,7 @@ span.hike-name-span {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
     border-radius: 1.5em;
-    border: 1px solid white;
+    border: 1px solid #F7E4D1;
 }
 
 
@@ -33,12 +44,18 @@ span.hike-name-span {
 
 
 #display-div {
-    padding: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     width: 40%;
     float: right;
     margin-right: 400px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 1.5em;
+}
+
+#display-div img {
+    border-radius: 1.5%;
 }
 
 
@@ -46,7 +63,16 @@ span.hike-name-span {
     width: 25%;
     float: left;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 50px;
+    margin-top: 30px;
 }
+
+.my-hikes-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 
 img.display-img {
     width: 300px;
@@ -81,8 +107,9 @@ img.display-img {
     border: 1px solid black;
     border-radius: 1.5%;
     padding: 5px;
-    width: 30%;
+    width: 25%;
     text-align: center;
+    margin-top: 10px;
 }
 
 #rev-main-container {
@@ -96,4 +123,24 @@ img.display-img {
     border-radius: 1.5em;
     padding: 10px;
     margin: 10px;
+}
+
+body {
+    background-color: #F7E4D1;
+}
+
+button {
+    border: 1-x solid black;
+    border-radius: 1.3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #689429;
+    color: white;
+}
+
+input[type=submit] {
+    border: 1-x solid black;
+    border-radius: 1.3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #689429;
+    color: white;
 }
