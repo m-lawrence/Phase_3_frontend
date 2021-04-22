@@ -109,6 +109,7 @@ img.display-img {
 
 #signup-form {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-right: 40px;
 }
 
 #login-container {
