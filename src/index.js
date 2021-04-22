@@ -88,7 +88,7 @@ function displayHike(hikeObj) {
         const updateForm = document.createElement('form')
             updateForm.className = 'update-form'
             updateForm.innerHTML = `
-            <br><input type="number" value= "${review.rating}"/><br>
+            <br><input type="number" value= "${review.rating}" min="1" max="5"/><br>
             <textarea name="description" rows="4" cols="30" required></textarea><br>
             <input type="submit" value="Edit Review" />
             `
@@ -154,9 +154,10 @@ function getUserName(usersArr, name) {
     // deleteBtn.classList.add('delete-rev')
     // editBtn.textContent = "Edit"
     // deleteBtn.textContent = "Delete"
+    // const allRevDivs = document.querySelectorAll('div#rev-div')
 
     // currUser.reviews.forEach(review => {
-    //     const reviewDiv = element.getAttribute(`[dataset.id="${review.id}"]`)
+    //     const reviewDiv = allRevDivs.find(`[dataset.id="${review.id}"]`)
     //     reviewDiv.append(editBtn, deleteBtn)})
 }
 
