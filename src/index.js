@@ -235,8 +235,8 @@ signUpForm.addEventListener('submit', event => {
 revContainer.addEventListener("click", event => {
     
     const currentReview = event.target.closest("div")
-    // console.log("current",currentReview)
-    const reviewId = parseInt(currentReview.dataset.id)
+    // console.log("currentReview", currentReview)
+    const reviewId = (currentReview.dataset.id)
     
     if (event.target.matches("button.delete-rev")){
         // console.log("second", event.target)
@@ -247,28 +247,35 @@ revContainer.addEventListener("click", event => {
         currentReview.remove()
     }
     else if (event.target.matches("button.edit-rev")){
-        
-        // console.log("edit",event.target)
+       
         const editForm = currentReview.children[5]
-        console.log(editForm)
+        console.log("third",editForm)
         if (editForm.style.display ==="none"){editForm.style.display ="block"}
         else {editForm.style.display ="none"}
-        let oldh4Rating = currentReview.children[0]
-        console.log("oldRating",oldh4Rating)
-        console.log("HI",event.target.children[0])
-            oldh4Rating.textContent = event.target[0].value
-            
-            // let updatedH4Rating = event.target[0].value
-            // let oldPDescription = currentReview.children[2]
-            // oldPDescription.textContent = event.target[1].value
-            // let updatedPDescription = event.target[1].value
+        let displayRating = currentReview.children[0]
+        console.log("displayRate", displayRating)
+        
+        let updatedRating = editForm.children[0].value
+        // debugger
+        console.log("updatedRating",updatedRating)
+        displayRating.textContent = `Rating: ${updatedRating}`
+
+        let displayDescription = currentReview.children[2]
+        console.log("displayDesc", displayDescription)
+        let updatedDescription = editForm.children[1].value
+        console.log("updatedDesc", updatedDescription)
+        // debugger
+        displayDescription.textContent = updatedDescription 
+        
+        
         editForm.addEventListener("submit", e => {
+            console.log("HHH", e.target)
             e.preventDefault()
-            let updatedH4Rating = e.target[0].value
-            let oldPDescription = currentReview.children[2]
-            oldPDescription.textContent = e.target[1].value
-            let updatedPDescription = e.target[1].value
-            console.log(editForm)
+            // let updatedH4Rating = e.target[0].value
+            // let oldPDescription = currentReview.children[2]
+            // oldPDescription.textContent = e.target[1].value
+            // let updatedPDescription = e.target[1].value
+            // console.log(editForm)
             // let oldh4Rating = currentReview.children[0]
             // oldh4Rating.textContent = event.target[0].value
             // let updatedH4Rating = event.target[0].value
@@ -280,9 +287,9 @@ revContainer.addEventListener("click", event => {
             fetch(`http://localhost:3000/reviews/${reviewId}`,{
                 method: "PATCH",
                 headers: {"Content-type": "application/json", "Accept":"application/json"},
-                body: JSON.stringify({rating: updatedH4Rating, description: updatedPDescription})
+                body: JSON.stringify({rating: updatedRating, description: updatedDescription})
             })
-            
+            editForm.reset()
         })
         
         
@@ -291,4 +298,5 @@ revContainer.addEventListener("click", event => {
 
 renderAllNames()
 getHikeInfo(1)
+
 
