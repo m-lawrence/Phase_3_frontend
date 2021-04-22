@@ -6,6 +6,9 @@ const newRevForm = document.querySelector('form#new-review-form')
 const revContainer = document.querySelector('div#rev-container')
 const signUpForm = document.querySelector('form#signup-form')
 
+
+
+
 function renderOneName(hikeObj) {
     const nameSpan = document.createElement('span')
     nameSpan.classList.add('hike-name-span')
@@ -59,7 +62,7 @@ function displayHike(hikeObj) {
     else if(hikeObj.averagerating === 5){displayRating.textContent = "Average Rating: ⭐️⭐️⭐️⭐️⭐️"}
   
     hikeObj.reviews.forEach( review => {
-      
+        // const reviewUser = review.user
         const revDiv = document.createElement('div')
         revDiv.classList.add('rev-div')
         const revRating = document.createElement('h4')
@@ -84,8 +87,8 @@ function displayHike(hikeObj) {
         const updateForm = document.createElement('form')
             updateForm.className = 'update-form'
             updateForm.innerHTML = `
-            <input type="number" value= "${review.rating}"/>
-            <input type='text' value="${review.description}"/>
+            <br><input type="number" value= "${review.rating}"/><br>
+            <textarea name="description" rows="4" cols="30" required></textarea><br>
             <input type="submit" value="Edit Review" />
             `
         updateForm.style.display = 'none'
@@ -142,6 +145,17 @@ function getUserName(usersArr, name) {
     newRevForm.dataset.userId = currUser.id 
     const loginDiv = document.querySelector('div#login-container')
     loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
+   
+    // const editBtn = document.createElement('button')
+    // editBtn.classList.add('edit-rev')
+    // const deleteBtn = document.createElement('button')
+    // deleteBtn.classList.add('delete-rev')
+    // editBtn.textContent = "Edit"
+    // deleteBtn.textContent = "Delete"
+
+    // currUser.reviews.forEach(review => {
+    //     const reviewDiv = element.getAttribute(`[dataset.id="${review.id}"]`)
+    //     reviewDiv.append(editBtn, deleteBtn)})
 }
 
 myHikesUl.addEventListener('click', event => {
@@ -183,8 +197,18 @@ newRevForm.addEventListener('submit', event => {
     addRevDescription.textContent = `"${descriptionInput}"` 
     addeditBtn.textContent = "Edit"
     addDeleteBtn.textContent = "Delete"
+
+    // const newReForm = document.createElement('form')
+    // newReForm.className = 'update-form'
+    // newReForm.innerHTML = `
+    // <br><input type="number" value= "${newRev.rating}"/><br>
+    // <textarea name="description" rows="4" cols="30" required></textarea><br>
+    // <input type="submit" value="Edit Review" />
+    // `
+    // newReForm.style.display = 'none'
     
-    addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
+    
+    addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn, newReForm)
     revContainer.append(addRevDiv)
 
 
@@ -197,7 +221,10 @@ newRevForm.addEventListener('submit', event => {
         body: JSON.stringify(newRev)
     })
     .then(response => response.json())
-    .then(data =>  addRevUser.textContent = `Reviewed by: ${data.username} ${data.date}`)
+    .then(data =>  {
+        addRevUser.textContent = `Reviewed by: ${data.username} ${data.date}`
+        addRevDiv.dataset.id = data.id
+    })
 
    
 })
@@ -266,10 +293,7 @@ revContainer.addEventListener("click", event => {
             oldPDescription.textContent = e.target[1].value
             let updatedDescription = e.target[1].value
             let updatedDate = currentReview.children[2]
-            console.log(updatedDate)
            
-         
-        
             
             fetch(`http://localhost:3000/reviews/${reviewId}`,{
                 method: "PATCH",
