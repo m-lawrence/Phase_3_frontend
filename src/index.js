@@ -208,7 +208,7 @@ newRevForm.addEventListener('submit', event => {
     // newReForm.style.display = 'none'
     
     
-    addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn, newReForm)
+    addRevDiv.append(addRevRating, addRevUser, addRevDescription, addeditBtn, addDeleteBtn)
     revContainer.append(addRevDiv)
 
 
