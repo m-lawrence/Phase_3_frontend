@@ -106,6 +106,8 @@ function renderOneMyHike(hikeObj) {
     myHikesLi.textContent = hikeObj.name 
 
     myHikesUl.append(myHikesLi)
+
+    
 }
 
 function renderAllMyHikes(id) {
@@ -253,20 +255,8 @@ revContainer.addEventListener("click", event => {
         
         if (editForm.style.display ==="none"){editForm.style.display ="block"}
         else {editForm.style.display ="none"}
-        // let displayRating = currentReview.children[0]
-        
-        
-        // let updatedRating = editForm.children[0].value
-        
-        // displayRating.textContent = `Rating: ${updatedRating}`
-
-        // let displayDescription = currentReview.children[2]
-        
-        // let updatedDescription = editForm.children[1].value
-        
-        // // debugger
-        // displayDescription.textContent = updatedDescription 
-        
+       
+     
         
         editForm.addEventListener("submit", e => {
            
@@ -277,13 +267,6 @@ revContainer.addEventListener("click", event => {
             let oldPDescription = currentReview.children[2]
             oldPDescription.textContent = e.target[1].value
             let updatedDescription = e.target[1].value
-           
-            // let oldh4Rating = currentReview.children[0]
-            // oldh4Rating.textContent = event.target[0].value
-            // let updatedH4Rating = event.target[0].value
-            // let oldPDescription = currentReview.children[2]
-            // oldPDescription.textContent = event.target[1].value
-            // let updatedPDescription = event.target[1].value
            
             
             fetch(`http://localhost:3000/reviews/${reviewId}`,{
