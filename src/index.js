@@ -24,8 +24,38 @@ function renderOneName(hikeObj) {
 function renderAllNames() {
     fetch('http://localhost:3000/hikes')
         .then(response => response.json())
-        .then(hikesArr => { hikesArr.forEach(renderOneName)})
+        .then(hikesArr => { hikesArr.forEach(renderOneName)
+        })
 }
+
+function sortAllHike(){
+    fetch('http://localhost:3000/hikes')
+    .then(response => response.json())
+    .then(sortArr => {
+            const sortBtn = document.querySelector("button.sort")
+
+             sortBtn.addEventListener("click",_=> {
+                hikeNamesDiv.innerHTML= ""
+                sortArr.sort((a,b) => {
+                    return b.averagerating - a.averagerating
+              })
+              sortArr.forEach(renderOneName)
+             })
+
+            const sortDistance = document.querySelector("button.sort-distance")
+            sortDistance.addEventListener("click",_=> {
+                hikeNamesDiv.innerHTML= ""
+                sortArr.sort((a,b) => {
+                    return a.distance - b.distance
+                })
+                sortArr.forEach(renderOneName)
+            })
+        })
+}
+sortAllHike()
+
+  
+  
 
 hikeNamesDiv.addEventListener('click', event => {
     let currentId = event.target.dataset.id
@@ -123,13 +153,17 @@ function renderAllMyHikes(id) {
     myHikesUl.innerHTML = ""
     fetch(`http://localhost:3000/users/${id}`)
         .then(response => response.json())
-        .then(user => {
-             
-            user.myhikes.forEach(hike => {
-            
-           renderOneMyHike(hike)
-        //    debugger
-        })})
+        .then(user => { console.log(user.myhikes)
+            const unique = Array.from(new Set(user.myhikes.map(hike => hike.id)))
+            .map(id => {
+                return{
+                    id: id,
+                    name: user.myhikes.find(hike =>hike.id === id).name
+                };
+            });
+            //  console.log(unique)
+            unique.forEach(renderOneMyHike)
+    })
 }
 
 loginForm.addEventListener('submit', event => {

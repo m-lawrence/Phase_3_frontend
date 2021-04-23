@@ -31,6 +31,10 @@ span.hike-name-span {
     border: 1px solid #F7E4D1;
 }
 
+span.hike-name-span:hover {
+    background-color: #4c9a2a;
+}
+
 
 #hike-names {
   height: 15vh;
@@ -82,7 +86,7 @@ span.hike-name-span {
 }
 
 .talk-about-it:hover{
-    background-color: darkgreen;
+    background-color: #94b447;
 }
 
 img.display-img {
@@ -148,6 +152,9 @@ button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #689429;
     color: white;
+}
+button:hover {
+    background-color: #94b447;
 }
 
 input[type=submit] {
