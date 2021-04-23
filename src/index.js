@@ -153,7 +153,7 @@ function renderAllMyHikes(id) {
     myHikesUl.innerHTML = ""
     fetch(`http://localhost:3000/users/${id}`)
         .then(response => response.json())
-        .then(user => { console.log(user.myhikes)
+        .then(user => { 
             const unique = Array.from(new Set(user.myhikes.map(hike => hike.id)))
             .map(id => {
                 return{
@@ -186,8 +186,7 @@ function getUserName(usersArr, name) {
     let currUser = usersArr.find(user => user.name === name)
     renderAllMyHikes(currUser.id)
     newRevForm.dataset.userId = currUser.id 
-    console.log("Preveious",newRevForm.previousElementSibling)
-    console.log("RevDiv",addRevDiv)
+   
     loginDiv.style.border = "none"
     loginDiv.innerHTML = `<h3>Welcome, ${currUser.name}</h3>`
     loginDiv.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
@@ -328,15 +327,15 @@ revContainer.addEventListener("click", event => {
    
     const reviewId = (currentReview.dataset.id)
     
-    if (event.target.matches("button.delete-rev")){
+    if (event.target.matches("button.delete-rev") && (newRevForm.dataset.userId == currentReview.dataset.userId)){
         
         fetch(`http://localhost:3000/reviews/${reviewId}`,{
             method: "DELETE"
         })
         currentReview.remove()
     }
-    else if (event.target.matches("button.edit-rev")){
-       
+    else if (event.target.matches("button.edit-rev") && (newRevForm.dataset.userId == currentReview.dataset.userId)){
+      
         const editForm = currentReview.children[6]
         
         if (editForm.style.display ==="none"){editForm.style.display ="block"}
